@@ -1,0 +1,45 @@
+#springboot的配置文件，名字固定,加载优先级由高到低:
+#1.项目名下(与pom.xml)同级cxt/config/ 2.cxt/  3.classpath:config/  4.classpath:/
+#语法：1.使用缩进（只能用空格，不能用tab等）表示层级
+#2.缩进的空格数目无所谓，只要左侧对齐即可 3.大小写敏感 4.k:空格v
+server:
+  port: 8080
+  context-path: /
+#指定配置文件多个profile的问题：1.通过yml文档块：指定哪个文档块相同配置生效,此时启动程序将会使用端口8081
+#第2中方式.指定启动参数:java -jar xx.jar --spring.profiles.active=st
+#第三种方式，指定jvm参数:-Dspring.profiles.active=st
+spring:
+  profiles:
+    active: st
+
+cfg1:
+  #加双引号输出会换行，单引号则原样输出
+  name: "zhao \n daowen"
+  name2: 乐之者java
+  age: 20
+  #map和list类型有两种表示方式
+  map1:
+    k1: v1
+    k2: v2
+  map2:
+   {k3: v3,k4: v4}
+  list1:
+    - list1_a1
+    - list1_a2
+    - list1_a3
+  list2:
+    [list2_1,list2_2]
+#可以打印出哪些自动配置生效了
+debug: true
+
+# ---表示yml的文档块
+---
+spring:
+  profiles: st
+server:
+  port: 8081
+---
+spring:
+  profiles: prd
+server:
+  port: 80
