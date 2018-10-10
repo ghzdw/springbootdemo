@@ -34,6 +34,25 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!--
+		一、springboot把第三方的静态资源通过webjars的方式（就是一个jar包）引入，去http://www.webjars.org/找
+       所有 /webjars/** ，都去 classpath:/META-INF/resources/webjars/ 找资源；
+       比如:localhost:8080/webjars/jquery/3.3.1/jquery.js这样一个请求就会找到org.webjars.jquery.jar里面的
+       /META-INF/resources/webjars/ jquery/3.3.1/jquery.js
+       二、自己的静态资源去静态资源文件夹里面找，静态资源文件夹包括:
+       "classpath:/META-INF/resources/",
+		"classpath:/resources/",
+		"classpath:/static/",
+		"classpath:/public/"
+		"/"：当前项目的根路径
+		三、在静态资源文件夹里面放入index.html就是欢迎页面
+		四、在静态资源文件夹里面放入favicon.ico
+		-->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.3.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
