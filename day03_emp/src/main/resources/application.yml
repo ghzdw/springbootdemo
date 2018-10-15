@@ -1,0 +1,27 @@
+#mybatis
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath*:mybatis/mapper/*Mapper.xml
+#数据源
+spring:
+  datasource:
+      type: com.mchange.v2.c3p0.ComboPooledDataSource
+      driverClass: com.mysql.jdbc.Driver
+      jdbcUrl: jdbc:mysql://127.0.0.1:3306/test1?useUnicode=true&characterEncoding=UTF-8
+      user: root
+      password: root
+      maxPoolSize: 200
+      minPoolSize: 10
+      initialPoolSize: 10
+      acquireIncrement: 5
+      idleConnectionTestPeriod: 28000
+      maxIdleTime: 28000
+#freemarker
+  freemarker:
+    cache: false
+    expose-request-attributes: true #默认false
+    expose-session-attributes: true #默认false
+    expose-spring-macro-helpers: true #默认true
+#国际化 #多个用,分割
+  messages:
+    basename: i18n/login

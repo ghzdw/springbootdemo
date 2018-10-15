@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.day03_emp.dao.EmpMapper">
+   <!--
+      员工表结构:
+      CREATE TABLE `boot_emp` (
+          `ID` int(11) NOT NULL auto_increment,
+          `emp_name` varchar(100) default NULL COMMENT '员工姓名',
+          `join_date` datetime default NULL COMMENT '入职日期',
+            `salary` NUMERIC(20,3) default NULL COMMENT '薪水',
+          PRIMARY KEY  (`ID`)
+        ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+       管理员表结构
+        CREATE TABLE `boot_admin` (
+          `ID` int(11) NOT NULL auto_increment,
+          `user_name` varchar(100) default NULL COMMENT '登录账号',
+          `pwd` varchar(100) default NULL COMMENT '登录密码',
+          PRIMARY KEY  (`ID`)
+        ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+      -->
+    <select id="login" resultType="java.util.Map"  parameterType="java.util.Map">
+        SELECT * FROM boot_admin WHERE user_name=#{username} and pwd=#{pwd}
+    </select>
+    <select id="getEmps" resultType="java.util.Map" >
+        SELECT * FROM boot_emp
+    </select>
+
+    <insert id="addOneEmp" parameterType="java.util.Map">
+        INSERT  INTO  boot_emp(emp_name,join_date,salary) VALUES (
+            #{emp_name},#{join_date},#{salary}
+        )
+    </insert>
+
+    <delete id="deleteEmpById" parameterType="java.lang.Integer">
+        DELETE  FROM  boot_emp where id=#{0}
+    </delete>
+
+    <update id="updateEmpById" parameterType="java.util.Map">
+      UPDATE  boot_emp SET  emp_name=#{emp_name},join_date=#{join_date},salary=#{salary}
+        WHERE  id=#{id}
+    </update>
+
+    <select id="getEmpById" resultType="java.util.Map" parameterType="java.lang.Integer">
+        SELECT * FROM boot_emp WHERE id=#{id}
+    </select>
+
+</mapper>
