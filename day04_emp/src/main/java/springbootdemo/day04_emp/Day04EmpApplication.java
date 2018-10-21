@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Day04EmpApplication {
 
 	public static void main(String[] args) {
+		System.out.println("缓存的示例12");
 		System.out.println("缓存的示例22");
 		SpringApplication.run(Day04EmpApplication.class, args);
 	}
